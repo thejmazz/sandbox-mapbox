@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/app.js',
+  entry: ['babel-polyfill', './src/app.js'],
   output: {
     path: './dist',
     filename: 'bundle.js'
@@ -31,7 +31,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'webworkify': 'webworkify-webpack'
+      'webworkify': 'webworkify-webpack',
+      'gl-matrix': path.resolve('./node_modules/gl-matrix/dist/gl-matrix.js')
     }
   },
   plugins: [

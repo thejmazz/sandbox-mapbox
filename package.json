@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/thejmazz/sandbox-mapbox#readme",
   "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "deck.gl": "^3.0.0-beta16",
+    "immutable": "^3.8.1",
+    "luma.gl": "^2.5.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-map-gl": "^1.5.0"
