@@ -1,8 +1,11 @@
 'use strict'
 
+const path = require('path')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  devtool: 'source-map',
   entry: './src/app.js',
   output: {
     path: './dist',
@@ -12,14 +15,30 @@ module.exports = {
     loaders: [{
       test: /\.jsx?/,
       loader: 'babel'
+    }, {
+      test: /\.json$/,
+      loader: 'json'
+    }, {
+      test: /\.js$/,
+      include: path.resolve('node_modules/mapbox-gl-shaders/index.js'),
+      loader: 'transform/cacheable?brfs'
+    }],
+    postLoaders: [{
+      include: /node_modules\/mapbox-gl-shaders/,
+      loader: 'transform',
+      query: 'brfs'
     }]
+  },
+  resolve: {
+    alias: {
+      'webworkify': 'webworkify-webpack'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Sandbox Mapbox'
     })
   ],
-  devtool: 'source-map',
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
