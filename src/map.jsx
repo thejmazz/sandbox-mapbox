@@ -28,32 +28,38 @@ const positions = cities
 const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN ||
   'pk.eyJ1IjoidGhlam1henoiLCJhIjoiY2loY2F0Y2JpMDBqZnVrbWEzb3F2b2U4ZiJ9.BV9ZaIthT-Wr0xQFz7cpWQ'
 
+const mapViewState = {
+  latitude: 15,
+  longitude: -25,
+  zoom: 2
+}
+
 export default () =>
   <MapboxGLMap
     width={window.innerWidth}
     height={window.innerHeight}
     mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
     mapStyle={mapStyle}
-    latitude={40.7231901}
-    longitude={-74.2344747}
-    zoom={2}
+    latitude={mapViewState.latitude}
+    longitude={mapViewState.longitude}
+    zoom={mapViewState.zoom}
   >
 
     <DeckGLOverlay
       id="default-deckgl-overlay"
       width={window.innerWidth}
       height={window.innerHeight}
-      latitude={40.7231901}
-      longitude={-74.2344747}
-      zoom={2}
+      latitude={mapViewState.latitude}
+      longitude={mapViewState.longitude}
+      zoom={mapViewState.zoom}
       layers={[
         new ScatterplotLayer({
           id: 'scatterplotLayer',
           width: window.innerWidth,
           height: window.innerHeight,
-          latitude: 40.7231901,
-          longitude: -74.2344747,
-          zoom: 2,
+          latitude: mapViewState.latitude,
+          longitude: mapViewState.longitude,
+          zoom: mapViewState.zoom,
           data: positions
         })
       ]}
